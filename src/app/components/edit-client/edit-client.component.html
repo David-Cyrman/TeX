@@ -1,0 +1,117 @@
+<div class="row">
+    <div class="col-md-6">
+      <a href="" [routerLink]="['/client/{id}']" class="btn btn-link">
+        <i class="fa fa-arrow-circle-o-left"></i>
+         Back To Client</a>
+    </div>
+    <div class="col-md-6">
+  
+    </div>
+  </div>
+  
+  <div class="card">
+    <div class="card-header">
+      Edit Client
+    </div>
+    <div class="card-body">
+      <form #clientForm="ngForm" (ngSubmit)="onSubmit(clientForm)">
+        <div class="form-group">
+          <label for="Name">Name</label>
+          <input 
+            type="text"
+            class="form-control"
+            name="Name"
+            #clientName="ngModel"
+            [ngClass]="{'is-invalid': clientName.errors && clientName.touched}"
+            [(ngModel)]="client.Name"
+            minlength="3"
+            required
+          >
+          <div [hidden]="!clientName.errors?.required" class="invalid-feedback">
+            * Name required
+          </div>
+          <div [hidden]="!clientName.errors?.minlength" class="invalid-feedback">
+              * Must be at least 3 characters
+            </div>
+        </div>
+  
+        <div class="form-group">
+            <label for="LastName">Last Name</label>
+            <input 
+              type="text"
+              class="form-control"
+              name="LastName"
+              #clientLastName="ngModel"
+              [ngClass]="{'is-invalid': clientLastName.errors && clientLastName.touched}"
+              [(ngModel)]="client.LastName"
+              minlength="3"
+              required
+            >
+            <div [hidden]="!clientLastName.errors?.required" class="invalid-feedback">
+              * Last Name required
+            </div>
+  
+            <div [hidden]="!clientLastName.errors?.minlength" class="invalid-feedback">
+                * It must be at least 3 characters
+              </div>
+          </div>
+  
+          <div class="form-group">
+              <label for="Email">Email</label>
+              <input 
+                type="text"
+                class="form-control"
+                name="Email"
+                #clientEmail="ngModel"
+                [ngClass]="{'is-invalid': clientEmail.errors && clientEmail.touched}"
+                [(ngModel)]="client.Email"
+                pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                required
+              >
+              <div [hidden]="!clientEmail.errors?.required" class="invalid-feedback">
+                * Email required
+              </div>
+    
+              <div [hidden]="!clientEmail.errors?.pattern" class="invalid-feedback">
+                  * It must be a valid email address
+                </div>
+            </div>
+  
+            <div class="form-group">
+                <label for="Phone">Phone</label>
+                <input 
+                  type="number"
+                  class="form-control"
+                  name="Phone"
+                  #clientPhone="ngModel"
+                  [ngClass]="{'is-invalid': clientPhone.errors && clientPhone.touched}"
+                  [(ngModel)]="client.Phone"
+                  minlength="8"
+                  required
+                >
+                <div [hidden]="!clientPhone.errors?.required" class="invalid-feedback">
+                  * Phone number required
+                </div>
+      
+                <div [hidden]="!clientPhone.errors?.minlength" class="invalid-feedback">
+                    * It must be a valid 8 digit phone number
+                  </div>
+              </div>
+  
+              <div class="form-group">
+                  <label for="Balance">Balance</label>
+                  <input 
+                    type="number"
+                    class="form-control"
+                    name="Balance"
+                    #clientBalance="ngModel"
+                    [(ngModel)]="client.Balance"
+                    [disabled] ="disableBalanceOnAdd"
+                  >
+          
+                </div>
+                <input type="Submit" value="Submit" class="btn btn-success btn-block">
+            
+      </form>
+    </div>
+  </div>
